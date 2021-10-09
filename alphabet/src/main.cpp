@@ -7,6 +7,7 @@ using namespace std;
 int main()
 {
     LetBuffer<6> buff = cout;
-    buff << "IiIiI" << 'i';
+
+    buff << "Tt";
     buff.print();
 }
