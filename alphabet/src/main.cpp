@@ -2,12 +2,22 @@
 #include "../include/LetBuffer.hpp"
 #include "../include/cfg.hpp"
 
-using namespace std;
-
 int main()
 {
-    LetBuffer<6> buff = cout;
+    LetBuffer<6> buff;
 
-    buff << "Tt";
-    buff.print();
+    const char CAPS_OFFSET = 32;
+
+    for (char ch = 'A'; ch <= 'Z'; ++ch)
+    {
+        // AaBb...YyZz
+        buff << ch << (ch + CAPS_OFFSET);
+    }
+
+    std::cout << std::endl
+              << buff << std::endl;
+
+    system("pause");
+
+    return 0x00;
 }

@@ -9,15 +9,10 @@
 template <uint8_t H>
 class LetBuffer
 {
-private:
-    std::ostream &_os;
+protected:
     Let_t _buff;
 
 public:
-    LetBuffer(std::ostream &os) : _os(os)
-    {
-    }
-
     LetBuffer &operator<<(char let)
     {
         std::string path = "..\\res\\";
@@ -30,7 +25,8 @@ public:
         std::ifstream f_let(path);
         if (!f_let)
         {
-            _os << "file is not opened!" << std::endl;
+            std::cerr << "couldn't find " << path << std::endl;
+            return *this;
         }
         else
         {
@@ -55,11 +51,11 @@ public:
         return *this;
     }
 
-    void print()
+    void print(std::ostream &os)
     {
         for (auto &l : _buff)
         {
-            _os << l << std::endl;
+            os << l << std::endl;
         }
     }
 
@@ -67,3 +63,10 @@ public:
     {
     }
 };
+
+template <uint8_t H = LET_H>
+std::ostream &operator<<(std::ostream &os, LetBuffer<H> &buff)
+{
+    buff.print(os);
+    return os;
+}
