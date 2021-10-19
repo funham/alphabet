@@ -8,14 +8,22 @@ int main()
 
     const char CAPS_OFFSET = 32;
 
-    for (char ch = 'A'; ch <= 'Z'; ++ch)
-    {
-        // AaBb...YyZz
-        buff << ch << (ch + CAPS_OFFSET);
-    }
+    const char* words[] = {
+        "qwert",
+        "yuiop",
+        "asdfg",
+        "hjklz",
+        "tea",
+        "fox",
+        "star"
+    };
 
-    std::cout << std::endl
-              << buff << std::endl;
+    for (auto &word : words)
+    {
+        buff << word;
+        std::cout << buff << std::endl;
+    }
+    
 
     system("pause");
 

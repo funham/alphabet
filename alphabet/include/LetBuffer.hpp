@@ -59,8 +59,12 @@ public:
         }
     }
 
-    void clear()
+    void flush()
     {
+        for (auto &s : _buff)
+        {
+            s = "";
+        }
     }
 };
 
@@ -68,5 +72,6 @@ template <uint8_t H = LET_H>
 std::ostream &operator<<(std::ostream &os, LetBuffer<H> &buff)
 {
     buff.print(os);
+    buff.flush();
     return os;
 }
